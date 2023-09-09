@@ -25,6 +25,29 @@ const abi = [
 	{
 		"inputs": [
 			{
+				"internalType": "string",
+				"name": "_link",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_username",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_password",
+				"type": "string"
+			}
+		],
+		"name": "deleteWebsite",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
 				"internalType": "address",
 				"name": "_userAddress",
 				"type": "address"
@@ -82,7 +105,7 @@ const abi = [
 		"type": "function"
 	}
 ]
-const contractAddress = "0xc3631AA8efcEb01690cA39AC36D86Bb01254Bb32";
+const contractAddress = "0x93066C9EB440e42529Cee7A770f12903fEDD2De3";
 
 // events listener
 const btnLogIn = document.getElementById("btnLogIn");
@@ -132,8 +155,8 @@ addPasswordForm.addEventListener("submit", async (event) => {
 
     try {
         const transaction = await contract.connect(signer).addPassword(siteLink, username, password);
+		alert("Your transaction is pending. Please wait for confirmation.");
         await transaction.wait();
-        // Create a charging page here
         addPasswordForm.reset();
         alert("Your password has been successfully added !")
         await getPasswordsByAddress()
@@ -184,7 +207,15 @@ async function getPasswordsByAddress() {
             const deleteButton = document.createElement("button");
             deleteButton.textContent = "Delete this password";
             deleteButton.addEventListener("click", async function () {
-                // code here or call a function to delete this password
+				try {
+					const transaction = await contract.connect(signer).deleteWebsite(siteLinkElt, usernameElt, passwordElt);
+					alert("Your transaction is pending. Please wait for confirmation.");
+					await transaction.wait();
+					alert("Your password has been successfully deleted !")
+					await getPasswordsByAddress()
+				} catch (error) {
+					alert("Error during the transaction")
+				}
             });
             userPasswordsList.appendChild(deleteButton);
         }

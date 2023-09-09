@@ -36,35 +36,34 @@ contract PasswordManager {
         }
         revert("This link doesn't exists");
     }
-}
 
-/*
-function deleteWebsite(string memory _link, string memory _username, string memory _password) public {
-    WebsiteInfo[] storage userWebsites = userPasswords[msg.sender];
-    uint256 indexToDelete = userWebsites.length;
 
-    // Parcourir les sites de l'utilisateur pour trouver le bon à supprimer
-    for (uint256 i = 0; i < userWebsites.length; i++) {
-        if (
-            keccak256(abi.encodePacked(userWebsites[i].link)) == keccak256(abi.encodePacked(_link)) &&
-            keccak256(abi.encodePacked(userWebsites[i].username)) == keccak256(abi.encodePacked(_username)) &&
-            keccak256(abi.encodePacked(userWebsites[i].password)) == keccak256(abi.encodePacked(_password))
-        ) {
-            indexToDelete = i;
-            break;
+    function deleteWebsite(string memory _link, string memory _username, string memory _password) public {
+        WebsiteInfo[] storage userWebsites = userPasswords[msg.sender];
+        uint256 indexToDelete = userWebsites.length;
+
+        // Parcourir les sites de l'utilisateur pour trouver le bon à supprimer
+        for (uint256 i = 0; i < userWebsites.length; i++) {
+            if (
+                keccak256(abi.encodePacked(userWebsites[i].link)) == keccak256(abi.encodePacked(_link)) &&
+                keccak256(abi.encodePacked(userWebsites[i].username)) == keccak256(abi.encodePacked(_username)) &&
+                keccak256(abi.encodePacked(userWebsites[i].password)) == keccak256(abi.encodePacked(_password))
+            ) {
+                indexToDelete = i;
+                break;
+            }
         }
+
+        // Vérifier si le site a été trouvé et peut être supprimé
+        require(indexToDelete < userWebsites.length, "Website not found or credentials do not match");
+
+        // Supprimer le site en décalant les éléments à droite du tableau
+        for (uint256 j = indexToDelete; j < userWebsites.length - 1; j++) {
+            userWebsites[j] = userWebsites[j + 1];
+        }
+
+        // Réduire la taille du tableau d'un élément
+        userWebsites.pop();
     }
 
-    // Vérifier si le site a été trouvé et peut être supprimé
-    require(indexToDelete < userWebsites.length, "Website not found or credentials do not match");
-
-    // Supprimer le site en décalant les éléments à droite du tableau
-    for (uint256 j = indexToDelete; j < userWebsites.length - 1; j++) {
-        userWebsites[j] = userWebsites[j + 1];
-    }
-
-    // Réduire la taille du tableau d'un élément
-    userWebsites.pop();
 }
-
-*/
