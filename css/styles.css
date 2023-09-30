@@ -5,18 +5,23 @@ body {
     margin: 0;
     padding: 0;
     background-color: #f0f0f0;
+    margin-left: 10%;
 }
 
 .container {
-    max-width: 800px;
     margin: 0 auto;
     padding: 20px;
     background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 h1 {
-    color: #333;
+    color: #030037;
+    text-align: center;
+}
+
+h2 {
+    color: #030037;
+    margin-left: 5%;
 }
 
 button {
@@ -25,6 +30,10 @@ button {
     border: none;
     padding: 10px 20px;
     cursor: pointer;
+    margin-left: auto; /* Pour centrer le bouton à droite */
+    margin-right: auto; /* Pour centrer le bouton à gauche */
+    display: block; /* Pour qu'il prenne toute la largeur disponible */
+    border-radius: 20px; /* Pour arrondir les coins */
 }
 
 button:hover {
@@ -39,7 +48,7 @@ form label {
 
 form input[type="text"],
 form input[type="password"] {
-    width: 100%;
+    width: 400px;
     padding: 10px;
     margin-bottom: 10px;
     border: 1px solid #ccc;
@@ -49,6 +58,9 @@ form input[type="password"] {
 form button[type="submit"] {
     background-color: #28a745;
     color: #fff;
+    margin-left: 10%; /* Pour centrer le bouton à droite */
+    display: block; /* Pour qu'il prenne toute la largeur disponible */
+    border-radius: 5px; /* Pour arrondir les coins */
 }
 
 form button[type="submit"]:hover {
@@ -66,4 +78,19 @@ ul li {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
+}
+
+.logo {
+    width: 50px; /* Définissez la largeur souhaitée en pixels ou avec une autre unité de mesure */
+    height: auto; /* Assurez-vous que la hauteur est ajustée automatiquement pour conserver les proportions */
+}
+
+.lancer-application {
+    margin: 50px;
+}
+
+.btn-lancer {
+    font-size: xx-large;
+    color: #1209c1;
+    text-decoration: none;
 }
